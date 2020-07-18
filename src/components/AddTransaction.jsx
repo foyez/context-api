@@ -36,6 +36,7 @@ export const AddTransaction = () => {
           </label>
           <input
             type="number"
+            step=".01"
             id="amount"
             placeholder="Enter amount..."
             value={amount}
