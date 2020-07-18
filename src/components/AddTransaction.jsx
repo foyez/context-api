@@ -1,13 +1,23 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import { GlobalContext } from '../context/GlobalContext'
 
 export const AddTransaction = () => {
   const [text, setText] = useState('')
   const [amount, setAmount] = useState(0)
+  const { addTransaction } = useContext(GlobalContext)
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+
+    if (!text || !amount) return
+
+    addTransaction({ text, amount: +amount })
+  }
 
   return (
     <div className="container">
       <h3>Add new transaction</h3>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="form-control">
           <label htmlFor="text">Text</label>
           <input

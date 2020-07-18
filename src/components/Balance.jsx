@@ -1,8 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 
-export const Balance = () => (
-  <div className="container">
-    <h4>Your Balance</h4>
-    <h1 id="balance">$0.00</h1>
-  </div>
-)
+import { GlobalContext } from '../context/GlobalContext'
+import { totalBalance } from '../utils'
+
+export const Balance = () => {
+  const { transactions } = useContext(GlobalContext)
+  const total = totalBalance(transactions)
+
+  return (
+    <div className="container">
+      <h4>Your Balance</h4>
+      <h1 id="balance">${total}</h1>
+    </div>
+  )
+}
